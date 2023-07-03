@@ -15,6 +15,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 function RegistrationPage() {
+
   const dispatch = useDispatch();
   const {
     firstName,
@@ -25,7 +26,7 @@ function RegistrationPage() {
     error,
     isPending,
   } = useSelector((state) => state.registration);
-
+//Use yup validator to validate  credentials
   const navigate = useNavigate();
 
   const validationSchema = yup.object().shape({
@@ -55,7 +56,7 @@ function RegistrationPage() {
         password: values.password,
         confirmPassword: values.confirmPassword,
       };
-
+// post the data to JSON file
       fetch('http://localhost:7000/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -72,7 +73,7 @@ function RegistrationPage() {
         });
     },
   });
-
+//put inputs
   return (
     <div className="Details">
       <form onSubmit={formik.handleSubmit}>
@@ -84,6 +85,7 @@ function RegistrationPage() {
           value={formik.values.firstName}
           onChange={formik.handleChange}
         />
+        
         <br />
         {formik.touched.firstName && formik.errors.firstName && <p>{formik.errors.firstName}</p>}
         <br />

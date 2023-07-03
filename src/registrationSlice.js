@@ -11,6 +11,7 @@ const registrationSlice = createSlice({
     error: '',
     isPending: false,
   },
+  //creating reducers
   reducers: {
     setFirstName: (state, action) => {
       state.firstName = action.payload;

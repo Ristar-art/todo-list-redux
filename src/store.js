@@ -1,45 +1,32 @@
-// store.js
-import { configureStore } from '@reduxjs/toolkit';
-import { loginStart,loginSuccess,loginFailure } from './loginSlice';
-import {
-    setFirstName,
-    setLastName,
-    setEmail,
-    setPassword,
-    setConfirmPassword,
-    setRegistrationError,
-    setRegistrationPending,
-    resetRegistration,
-  } from './registrationSlice';
-import {
-  selectTodos,
-  selectTodoStatus,
-  selectTodoError,
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import loginReducer, { loginStart, loginSuccess, loginFailure } from './loginSlice';
+import registrationReducer, {
+  setFirstName,
+  setLastName,
+  setEmail,
+  setPassword,
+  setConfirmPassword,
+  setRegistrationError,
+  setRegistrationPending,
+  resetRegistration,
+} from './registrationSlice';
+import todoReducer, {
+  setTodos,
+  addTodo,
+  updateTodoAction,
+  deleteTodoAction,
+  toggleCompleteAction,
 } from './todoSlice';
 
-
+const rootReducer = combineReducers({
+  login: loginReducer,
+  registration: registrationReducer,
+  todos: todoReducer,
+  // Add more reducers here if needed
+});
 
 const store = configureStore({
-  reducer: {
-   login: loginStart,
-   login: loginSuccess,
-   login:loginFailure,
-   registration:setFirstName,
-   registration:setLastName,
-   registration:setPassword,
-   registration:setEmail,
-   registration:setConfirmPassword,
-   registration:setRegistrationError,
-   registration:setRegistrationPending,
-   registration:resetRegistration,
-   todos:selectTodos,
-   todos:selectTodoStatus,
-   todos:selectTodoError,
- 
-
- 
-    // Add more reducers here if needed
-  },
+  reducer: rootReducer,
 });
 
 export default store;

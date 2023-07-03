@@ -1,30 +1,31 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useAuth } from "./auth";
 
+export const Navbar = ({ user }) => {
+  const auth = useAuth();
 
-
-export const Navbar =({user}) =>{
-
-//this are links on the Navbaer to other pages
-//access to the ristricted data by unaouthorised person will lead to being sent to the login page
- const auth = useAuth()
-    
-return(
-
+  return (
     <nav>
-        <Link to = '/'>Home </Link>
-        <Link to = '/about'>About</Link>       
-        <Link to = '/todolist'>To do list</Link> 
-        <Link to = '/registrationpage'>Registration Page</Link>
-          {
-            !auth.authenticated &&( <Link to= 'login'>Login</Link>
-            )
-          }
-         
-
+      <ul className="navbar-links">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/todolist">To do list</Link>
+        </li>
+        <li>
+          <Link to="/registrationpage">Registration Page</Link>
+        </li>
+        {!auth.authenticated && (
+          <li>
+            <Link to="login">Login</Link>
+          </li>
+        )}
+      </ul>
     </nav>
-   
-)
-
-}
+  );
+};

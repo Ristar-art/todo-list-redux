@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+// TodoList.js
+
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import {
   fetchTodos,
   createTodo,
   updateTodo,
   deleteTodo,
   toggleComplete,
-  selectTodos,
 } from './todoSlice';
-
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(selectTodos);
+  const todos = useSelector((state) => state.todos);
   const [newTodo, setNewTodo] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -25,11 +26,13 @@ const TodoList = () => {
 
   const handleAddTodo = () => {
     if (newTodo.trim() !== '') {
-      dispatch(createTodo({
-        todo: newTodo,
-        priority: priority,
-        completed: false,
-      }));
+      dispatch(
+        createTodo({
+          todo: newTodo,
+          priority: priority,
+          completed: false,
+        })
+      );
       setNewTodo('');
       setPriority('Low');
     }
@@ -48,11 +51,13 @@ const TodoList = () => {
 
   const handleUpdateTodo = () => {
     if (editedTodo.trim() !== '') {
-      dispatch(updateTodo({
-        index: editIndex,
-        todo: editedTodo,
-        priority: priority,
-      }));
+      dispatch(
+        updateTodo({
+          index: editIndex,
+          todo: editedTodo,
+          priority: priority,
+        })
+      );
       setEditMode(false);
       setEditIndex(null);
       setEditedTodo('');
@@ -61,13 +66,14 @@ const TodoList = () => {
   };
 
   const handleToggleComplete = (index) => {
-    const updatedTodo = { ...todos[index] };
-    updatedTodo.completed = !updatedTodo.completed;
-    dispatch(toggleComplete({
-      index: index,
-      todo: updatedTodo,
-    }));
+    dispatch(
+      toggleComplete({
+        index: index,
+        completed: !todos[index].completed,
+      })
+    );
   };
+  
 
   const priorityColor = (priority) => {
     switch (priority) {
@@ -82,14 +88,17 @@ const TodoList = () => {
   };
 
   return (
-    <div className="todo-List">
+    <div className="todo-list">
       <h1>Todo List</h1>
       <input
         type="text"
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
       />
-      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+      >
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>

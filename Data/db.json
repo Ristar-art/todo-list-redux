@@ -55,6 +55,22 @@
       "password": "123456789",
       "confirmPassword": "123456789",
       "id": 7
+    },
+    {
+      "firstName": "Boikelto",
+      "lastName": "Mochochoko",
+      "email": "mochochokoboiketlo@gmail.com",
+      "password": "123321123",
+      "confirmPassword": "123321123",
+      "id": 8
+    },
+    {
+      "firstName": "elton",
+      "lastName": "khohliso",
+      "email": "eltonmochochoko@gmail.com",
+      "password": "123321123",
+      "confirmPassword": "123321123",
+      "id": 9
     }
   ],
   "todos": [
@@ -117,6 +133,18 @@
       "priority": "High",
       "completed": false,
       "id": 36
+    },
+    {
+      "todo": "mvb cmhb",
+      "priority": "Medium",
+      "completed": false,
+      "id": 37
+    },
+    {
+      "todo": "ljgvclj",
+      "priority": "Low",
+      "completed": false,
+      "id": 38
     }
   ]
 }
