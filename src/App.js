@@ -1,25 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginPage from './loginPage';
+import RegistrationPage from './registrationPage';
+import {Routes,Route} from 'react-router-dom'
 
-function App() {
+import { Home } from './components/Home';
+import { About } from './components/About';
+import { Navbar } from './components/Navbar';
+
+import { AuthProvider } from './components/auth';
+import { RequreAuth } from './components/RequreAuth';
+import TodoList from './TodoList';
+
+
+
+  function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   
+      <>
+      <AuthProvider>
+
+      <Navbar/>
+
+         <Routes>
+           <Route path = '/' element ={<Home/>}></Route>
+           <Route path = '/about' element ={<About/>}></Route>
+           <Route path = '/registrationpage' element ={<RegistrationPage/>}></Route> 
+           <Route path = '/login' element ={<LoginPage/>}></Route> 
+           <Route path = '/todolist' element ={<RequreAuth><TodoList/></RequreAuth>}></Route>          
+          
+ 
+          </Routes>
+        
+      </AuthProvider> 
+      
+        
+      </>
+ 
+    
+  ) 
 }
 
 export default App;
