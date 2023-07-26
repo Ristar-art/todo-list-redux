@@ -15,7 +15,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 function RegistrationPage() {
-
   const dispatch = useDispatch();
   const {
     firstName,
@@ -26,15 +25,24 @@ function RegistrationPage() {
     error,
     isPending,
   } = useSelector((state) => state.registration);
-//Use yup validator to validate  credentials
+
   const navigate = useNavigate();
 
   const validationSchema = yup.object().shape({
-    firstName: yup.string().required('First name is required').min(5, 'First name must be at least 5 characters long'),
-    lastName: yup.string().required('Last name is required').min(5, 'Last name must be at least 5 characters long'),
+    firstName: yup
+      .string()
+      .required('First name is required')
+      .min(5, 'First name must be at least 5 characters long'),
+    lastName: yup
+      .string()
+      .required('Last name is required')
+      .min(5, 'Last name must be at least 5 characters long'),
     email: yup.string().required('Email is required').email('Invalid email format'),
     password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters long'),
-    confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Confirm password is required'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .required('Confirm password is required'),
   });
 
   const formik = useFormik({
@@ -46,7 +54,7 @@ function RegistrationPage() {
       confirmPassword: '',
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       dispatch(setRegistrationPending(true));
 
       const profile = {
@@ -56,24 +64,32 @@ function RegistrationPage() {
         password: values.password,
         confirmPassword: values.confirmPassword,
       };
-// post the data to JSON file
-      fetch('http://localhost:7000/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile),
-      })
-        .then(() => {
-          dispatch(resetRegistration());
-          navigate('/', { replace: true });
-        })
-        .catch((error) => {
-          console.error('Error creating user:', error);
-          dispatch(setRegistrationError('Failed to register user'));
-          dispatch(setRegistrationPending(false));
+
+      try {
+        const response = await fetch('http://localhost:8000/api/profiles', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(profile),
         });
+
+        if (!response.ok) {
+          throw new Error(`Failed to register user: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log('Registration success:', data);
+
+        dispatch(resetRegistration());
+        navigate('/', { replace: true });
+      } catch (error) {
+        console.error('Error creating user:', error.message);
+        dispatch(setRegistrationError(error.message));
+      } finally {
+        dispatch(setRegistrationPending(false));
+      }
     },
   });
-//put inputs
+
   return (
     <div className="Details">
       <form onSubmit={formik.handleSubmit}>
@@ -85,7 +101,6 @@ function RegistrationPage() {
           value={formik.values.firstName}
           onChange={formik.handleChange}
         />
-        
         <br />
         {formik.touched.firstName && formik.errors.firstName && <p>{formik.errors.firstName}</p>}
         <br />
@@ -131,15 +146,19 @@ function RegistrationPage() {
           onChange={formik.handleChange}
         />
         <br />
-        {formik.touched.confirmPassword && formik.errors.confirmPassword && <p>{formik.errors.confirmPassword}</p>}
+        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+          <p>{formik.errors.confirmPassword}</p>
+        )}
         <br />
 
-        {!isPending && <button type="submit">Register</button>}
-        {isPending && <button type="submit" disabled>Loading...</button>}
+        {!isPending ? (
+          <button type="submit">Register</button>
+        ) : (
+          <button type="submit" disabled>Loading...</button>
+        )}
       </form>
     </div>
   );
 }
 
 export default RegistrationPage;
-

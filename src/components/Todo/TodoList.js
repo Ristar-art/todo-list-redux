@@ -1,5 +1,3 @@
-// TodoList.js
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -34,7 +32,6 @@ const TodoList = () => {
         })
       );
       setNewTodo('');
-      setPriority('Low');
     }
   };
 
@@ -53,7 +50,7 @@ const TodoList = () => {
     if (editedTodo.trim() !== '') {
       dispatch(
         updateTodo({
-          index: editIndex,
+          id: editIndex + 1, // Pass the id, not the index, to the updateTodo function
           todo: editedTodo,
           priority: priority,
         })
@@ -61,19 +58,17 @@ const TodoList = () => {
       setEditMode(false);
       setEditIndex(null);
       setEditedTodo('');
-      setPriority('Low');
     }
   };
 
   const handleToggleComplete = (index) => {
     dispatch(
       toggleComplete({
-        index: index,
+        id: index + 1, // Pass the id, not the index, to the toggleComplete function
         completed: !todos[index].completed,
       })
     );
   };
-  
 
   const priorityColor = (priority) => {
     switch (priority) {
@@ -83,7 +78,7 @@ const TodoList = () => {
         return 'orange';
       case 'Low':
       default:
-        return 'medium';
+        return 'black';
     }
   };
 
@@ -95,10 +90,7 @@ const TodoList = () => {
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
       />
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-      >
+      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
@@ -106,7 +98,7 @@ const TodoList = () => {
       <button onClick={handleAddTodo}>Add Todo</button>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
+          <li key={todo.id}>
             {editMode && editIndex === index ? (
               <>
                 <input
@@ -144,7 +136,7 @@ const TodoList = () => {
             ) : (
               <button onClick={() => handleEditTodo(index)}>Edit</button>
             )}
-            <button onClick={() => handleDeleteTodo(index)}>Delete</button>
+            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
             <button onClick={() => handleToggleComplete(index)}>
               {todo.completed ? 'Undo' : 'Complete'}
             </button>

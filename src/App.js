@@ -1,16 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-import LoginPage from './loginPage';
-import RegistrationPage from './registrationPage';
+import LoginPage from './components/Login/loginPage';
+import RegistrationPage from './components/Registration/registrationPage';
+import TodoList from './components/Todo/TodoList';
 import {Routes,Route} from 'react-router-dom'
 
-import { Home } from './components/Home';
-import { About } from './components/About';
-import { Navbar } from './components/Navbar';
+import { Home } from './Pages/Home';
+import { About } from './Pages/About';
+import { Navbar } from './Pages/Navbar';
 
-import { AuthProvider } from './components/auth';
-import { RequreAuth } from './components/RequreAuth';
-import TodoList from './TodoList';
+import { AuthProvider } from './Authentication/auth';
+import { RequreAuth } from './Authentication/RequreAuth';
 
 
 

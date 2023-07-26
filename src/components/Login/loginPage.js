@@ -1,8 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from './components/auth';
+import { useAuth } from '../../Authentication/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStart, loginSuccess, loginFailure } from './loginSlice';
 
@@ -38,7 +36,7 @@ function LoginPage() {
     // Simulating an asynchronous login process
     try {
       // Fetch profile data from the server
-      const response = await fetch('http://localhost:7000/profile', {
+      const response = await fetch('http://localhost:8000/api/profiles', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

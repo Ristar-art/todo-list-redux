@@ -1,0 +1,54 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "firstName": "Boikelto",
+      "lastName": "Mochochoko",
+      "email": "mochochokoboiketlo@gmail.com",
+      "password": "111111111",
+      "confirmPassword": "111111111"
+    },
+    {
+      "id": 2,
+      "firstName": "elton",
+      "lastName": "khohliso",
+      "email": "eltonmochochoko@gmail.com",
+      "password": "111111111",
+      "confirmPassword": "111111111"
+    },
+    {
+      "id": 3,
+      "firstName": "sabzilo",
+      "lastName": "khohlkhol",
+      "email": "eltonmochochoko@gmail.com",
+      "password": "11111111",
+      "confirmPassword": "11111111"
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "todo": "dyuo",
+      "priority": "Medium",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "todo": "yuuui",
+      "priority": "High",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "todo": "uyfiuiy",
+      "priority": "Medium",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "todo": "uiogljk",
+      "priority": "Low",
+      "completed": false
+    }
+  ]
+}
