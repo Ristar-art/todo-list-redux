@@ -64,7 +64,7 @@ function LoginPage() {
     } catch (error) {
       // Dispatch loginFailure action with the error message
       dispatch(loginFailure('Error logging in user'));
-      console.error('Error logging in user:', error);
+      console.error('Error logging in user:', error); 
     }
   }
 
