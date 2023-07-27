@@ -28,26 +28,11 @@
   "todos": [
     {
       "id": 1,
-      "todo": "dyuo",
-      "priority": "Medium",
-      "completed": false
+      "todo": "ujvkjukgk",
+      "priority": "High"
     },
     {
       "id": 2,
-      "todo": "yuuui",
-      "priority": "High",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "todo": "uyfiuiy",
-      "priority": "Medium",
-      "completed": false
-    },
-    {
-      "id": 4,
-      "todo": "uiogljk",
-      "priority": "Low",
       "completed": false
     }
   ]

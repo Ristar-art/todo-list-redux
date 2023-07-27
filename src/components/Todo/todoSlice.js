@@ -92,10 +92,13 @@ export const toggleComplete = (todo) => async (dispatch) => {
   try {
     const { id, completed } = todo;
     await axios.put(`/api/todos/${id}`, { completed });
-    dispatch(toggleCompleteAction(todo));
+
+    // Instead of dispatching the entire 'todo' object, dispatch only the id and completed status.
+    dispatch(toggleCompleteAction({ id, completed }));
   } catch (error) {
     console.error('Error toggling complete:', error);
   }
 };
+
 
 export default todoSlice.reducer;

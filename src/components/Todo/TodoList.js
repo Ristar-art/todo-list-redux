@@ -65,14 +65,15 @@ const TodoList = () => {
     }
   };
 
-  const handleToggleComplete = (index) => {
+  const handleToggleComplete = (id) => { // Change 'index' to 'id'
     dispatch(
       toggleComplete({
-        index: index,
-        completed: !todos[index].completed,
+        id: id, // Pass the correct id instead of 'index'
+        completed: !todos.find((todo) => todo.id === id).completed,
       })
     );
   };
+  
   
 
   const priorityColor = (priority) => {
@@ -145,9 +146,10 @@ const TodoList = () => {
               <button onClick={() => handleEditTodo(index)}>Edit</button>
             )}
            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
-            <button onClick={() => handleToggleComplete(index)}>
-              {todo.completed ? 'Undo' : 'Complete'}
-            </button>
+           <button onClick={() => handleToggleComplete(todo.id)}>
+  {todo.completed ? 'Undo' : 'Complete'}
+</button>
+
           </li>
         ))}
       </ul>
