@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../Authentication/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginStart, loginSuccess, loginFailure } from './loginSlice';
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../Authentication/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginStart, loginSuccess, loginFailure } from "./loginSlice";
 
 function LoginPage() {
-  const [userName, setUserName] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [firstErrorMessage, setFirstErrorMessage] = useState('');
-  const [secondErrorMessage, setSecondErrorMessage] = useState('');
-  const [thirdErrorMessage, setThirdErrorMessage] = useState('');
+  const [userName, setUserName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [firstErrorMessage, setFirstErrorMessage] = useState("");
+  const [secondErrorMessage, setSecondErrorMessage] = useState("");
+  const [thirdErrorMessage, setThirdErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const auth = useAuth();
   const location = useLocation();
-  const redirectPath = location.state?.path || '/';
+  const redirectPath = location.state?.path || "/";
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.login.loading);
@@ -36,9 +36,9 @@ function LoginPage() {
     // Simulating an asynchronous login process
     try {
       // Fetch profile data from the server
-      const response = await fetch('http://localhost:8000/api/profiles', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:8000/api/profiles", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
       });
       const profile = await response.json();
 
@@ -59,56 +59,84 @@ function LoginPage() {
         navigate(redirectPath, { replace: true });
       } else {
         // Dispatch loginFailure action with an error message
-        dispatch(loginFailure('Invalid credentials'));
+        dispatch(loginFailure("Invalid credentials"));
       }
     } catch (error) {
       // Dispatch loginFailure action with the error message
-      dispatch(loginFailure('Error logging in user'));
-      console.error('Error logging in user:', error); 
+      dispatch(loginFailure("Error logging in user"));
+      console.error("Error logging in user:", error);
     }
   }
 
   return (
-    <div className="Login-page">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          required
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <br />
-        <p>{firstErrorMessage}</p>
-        <br />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          minWidth: "25vw",
+          minHeight: "50vh",
+          backgroundColor: "gray",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 5,
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            required
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            style={{height:25,borderRadius:3, border:'none'}}
+          />
+          <br />
+          <p>{firstErrorMessage}</p>
+          <br />
 
-        <input
-          type="text"
-          placeholder="email"
-          required
-          value={Email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <p>{secondErrorMessage}</p>
-        <br />
+          <input
+            type="text"
+            placeholder="email"
+            required
+            value={Email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{height:25,borderRadius:3, border:'none'}}
+          />
+          <br />
+          <p>{secondErrorMessage}</p>
+          <br />
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          value={Password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <p>{thirdErrorMessage}</p>
-        <br />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={Password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{height:25,borderRadius:3, border:'none'}}
+          />
+          <br />
+          <p>{thirdErrorMessage}</p>
+          <br />
 
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-
-        <button type="submit">Log in</button>
-      </form>
+          {loading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+        <div style={{width:"100%",flex:1,display: "flex", justifyContent:'center'}}>
+        <button
+            style={{  }}
+            type="submit"
+          >
+            Log in
+          </button>
+        </div>
+         
+        </form>
+      </div>
     </div>
   );
 }

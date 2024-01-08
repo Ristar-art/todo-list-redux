@@ -19,16 +19,16 @@ import { RequreAuth } from './Authentication/RequreAuth';
       <>
       <AuthProvider>
 
-      <Navbar/>
+      <Navbar />
 
          <Routes>
            <Route path = '/' element ={<Home/>}></Route>
            <Route path = '/about' element ={<About/>}></Route>
            <Route path = '/registrationpage' element ={<RegistrationPage/>}></Route> 
            <Route path = '/login' element ={<LoginPage/>}></Route> 
-           <Route path = '/todolist' element ={<RequreAuth><TodoList/></RequreAuth>}></Route>          
-          
- 
+           {/* <Route path = '/todolist' element ={<RequreAuth><TodoList/></RequreAuth>}></Route>           */}
+           <Route path = '/todolist' element ={<TodoList/>}></Route> 
+  
           </Routes>
         
       </AuthProvider> 
