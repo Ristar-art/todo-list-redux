@@ -57,7 +57,7 @@ app.get('/api/profiles', (req, res) => {
 // Endpoint to add a new todo
 app.post('/api/todos', (req, res) => {
   // Get the todo object from the request body
-  const { todo, priority } = req.body;
+  const { todo, time, priority } = req.body;
 
   // Generate a unique ID for the new todo
   const id = data.todos.length + 1;
@@ -66,6 +66,7 @@ app.post('/api/todos', (req, res) => {
   const newTodo = {
     id,
     todo,
+    time,
     priority,
     completed: false,
   };
@@ -94,6 +95,7 @@ app.put('/api/todos/:id', (req, res) => {
   if (todoIndex !== -1) {
     // Update the todo item with the new data
     data.todos[todoIndex].todo = todo;
+    //data.todos[todoIndex].time = todo;
     data.todos[todoIndex].priority = priority;
     data.todos[todoIndex].completed = completed;
     saveDataToFile(dataFilePath, data);

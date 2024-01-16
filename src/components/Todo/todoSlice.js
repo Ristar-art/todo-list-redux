@@ -15,10 +15,11 @@ export const todoSlice = createSlice({
       state.push(action.payload);
     },
     updateTodoAction: (state, action) => {
-      const { id, todo, priority } = action.payload;
+      const { id, todo, time ,priority } = action.payload;
       const todoItem = state.find((item) => item.id === id);
       if (todoItem) {
         todoItem.todo = todo;
+        todoItem.time = time;
         todoItem.priority = priority;
       }
     },

@@ -25,15 +25,5 @@
       "confirmPassword": "11111111"
     }
   ],
-  "todos": [
-    {
-      "id": 1,
-      "todo": "ujvkjukgk",
-      "priority": "High"
-    },
-    {
-      "id": 2,
-      "completed": false
-    }
-  ]
+  "todos": []
 }
