@@ -7,3 +7,4 @@ Command to start the app is:
 ### `npm i`
 ### `npm run dev`
 
+> Password must be at least 8 characters long

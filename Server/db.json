@@ -23,7 +23,30 @@
       "email": "eltonmochochoko@gmail.com",
       "password": "11111111",
       "confirmPassword": "11111111"
+    },
+    {
+      "id": 4,
+      "firstName": "sabza",
+      "lastName": "cchoks",
+      "email": "mochochohokoboiketlo@gmail.com",
+      "password": "123456789",
+      "confirmPassword": "123456789"
+    },
+    {
+      "id": 5,
+      "firstName": "jfujh",
+      "lastName": "Boiketlo",
+      "email": "mochochokoboiketlo@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
     }
   ],
-  "todos": []
+  "todos": [
+    {
+      "id": 1,
+      "todo": "yfiuyh",
+      "time": "14:22",
+      "priority": "Medium"
+    }
+  ]
 }

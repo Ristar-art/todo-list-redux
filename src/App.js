@@ -26,8 +26,8 @@ import { RequreAuth } from './Authentication/RequreAuth';
            <Route path = '/about' element ={<About/>}></Route>
            <Route path = '/registrationpage' element ={<RegistrationPage/>}></Route> 
            <Route path = '/login' element ={<LoginPage/>}></Route> 
-           {/* <Route path = '/todolist' element ={<RequreAuth><TodoList/></RequreAuth>}></Route>           */}
-           <Route path = '/todolist' element ={<TodoList/>}></Route> 
+           <Route path = '/todolist' element ={<RequreAuth><TodoList/></RequreAuth>}></Route>          
+           
   
           </Routes>
         
