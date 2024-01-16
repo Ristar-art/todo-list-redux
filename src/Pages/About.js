@@ -55,8 +55,7 @@ export const About = () =>{
             <li>Create an Account: Sign up for a personalized account to unlock the full potential of our to-do list app.</li>
             <li>Add Your First Task: Start by adding your tasks to the list.</li>
             <li>Stay Organized: Use our intuitive interface to edit, update, or delete tasks.</li>
-            <li>Collaborate (if needed): If you're working on projects with others, take advantage of the collaboration features.</li>
-          </ol>
+         </ol>
     
           <h2 style={headingStyle}>Contact Us</h2>
           <p style={contactStyle}>
